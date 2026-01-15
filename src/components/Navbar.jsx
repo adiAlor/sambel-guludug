@@ -1,32 +1,32 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
-    { label: 'Home', href: '#' },
-    { label: 'Varian', href: '#varian' },
-    { label: 'Testimoni', href: '#testimoni' },
-    { label: 'Pesan', href: '#pesan' },
-  ]
+    { label: "Home", href: "#" },
+    { label: "Varian", href: "#varian" },
+    { label: "Testimoni", href: "#testimoni" },
+    { label: "Pesan", href: "#pesan" },
+  ];
 
   return (
     <>
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-brutal-dark/95 backdrop-blur-sm border-b-4 border-brutal-red'
-            : 'bg-transparent'
+            ? "bg-brutal-dark/95 backdrop-blur-sm border-b-4 border-brutal-red"
+            : "bg-transparent"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -37,11 +37,16 @@ export default function Navbar() {
             {/* Logo */}
             <motion.a
               href="#"
-              className="font-brutal text-2xl md:text-3xl text-brutal-orange"
+              className="flex items-center gap-2 font-brutal text-2xl md:text-3xl text-brutal-orange"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              🌶️ GULUDUG
+              <img
+                src="/logo.png"
+                alt="Sambel Guludug Logo"
+                className="w-24 h-24 object-contain"
+              />
+              SAMBEL GULUDUG
             </motion.a>
 
             {/* Desktop Navigation */}
@@ -60,7 +65,7 @@ export default function Navbar() {
 
               {/* CTA Button */}
               <motion.a
-                href="https://wa.me/6281234567890"
+                href="https://wa.me/6285111031226"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-brutal-orange text-brutal-white font-bold px-6 py-2 border-4 border-brutal-dark shadow-[4px_4px_0px_0px_#FF2D2D] hover:shadow-[6px_6px_0px_0px_#FF2D2D] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
@@ -76,7 +81,7 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileTap={{ scale: 0.9 }}
             >
-              {isMobileMenuOpen ? '✕' : '☰'}
+              {isMobileMenuOpen ? "✕" : "☰"}
             </motion.button>
           </div>
         </div>
@@ -87,9 +92,9 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <motion.div
             className="fixed inset-0 z-40 bg-brutal-dark pt-24"
-            initial={{ opacity: 0, x: '100%' }}
+            initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
+            exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3 }}
           >
             <div className="container mx-auto px-6 py-8">
@@ -109,7 +114,7 @@ export default function Navbar() {
                 ))}
 
                 <motion.a
-                  href="https://wa.me/6281234567890"
+                  href="https://wa.me/6285111031226"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-brutal-orange text-brutal-white font-brutal text-2xl px-8 py-4 border-4 border-brutal-dark text-center mt-4"
@@ -126,5 +131,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion'
-import Scene3D from './Scene3D'
+import { motion } from "framer-motion";
+import Scene3D from "./Scene3D";
 
 export default function HeroSection() {
   const containerVariants = {
@@ -11,7 +11,7 @@ export default function HeroSection() {
         delayChildren: 0.3,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -20,26 +20,26 @@ export default function HeroSection() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
-  }
+  };
 
   const buttonVariants = {
     hover: {
       scale: 1.05,
       x: -4,
       y: -4,
-      boxShadow: '12px 12px 0px 0px #FF2D2D',
+      boxShadow: "12px 12px 0px 0px #FF2D2D",
       transition: { duration: 0.2 },
     },
     tap: {
       scale: 0.98,
       x: 0,
       y: 0,
-      boxShadow: '4px 4px 0px 0px #FF2D2D',
+      boxShadow: "4px 4px 0px 0px #FF2D2D",
     },
-  }
+  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brutal-dark">
@@ -57,14 +57,11 @@ export default function HeroSection() {
         animate="visible"
       >
         {/* Badge */}
-        <motion.div
-          variants={itemVariants}
-          className="inline-block mb-6"
-        >
-          <span className="bg-brutal-orange text-brutal-white font-bold px-6 py-2 text-sm uppercase tracking-widest border-4 border-brutal-dark shadow-[4px_4px_0px_0px_#FF2D2D]">
+        {/* <motion.div variants={itemVariants} className="inline-block mb-4">
+          <span className="bg-brutal-orange text-brutal-white font-bold px-4 py-3 text-xs uppercase tracking-wider border-2 border-brutal-dark shadow-[2px_2px_0px_0px_#FF2D2D]">
             🔥 Sambel #1 Indonesia
           </span>
-        </motion.div>
+        </motion.div> */}
 
         {/* Main Headline with Fire & Lightning Effects */}
         <motion.h1
@@ -73,7 +70,9 @@ export default function HeroSection() {
         >
           {/* SAMBEL with Fire Effect */}
           <span className="relative inline-block">
-            <span className="fire-text" data-text="SAMBEL">SAMBEL</span>
+            <span className="fire-text" data-text="SAMBEL">
+              SAMBEL
+            </span>
             {/* Fire particles decoration */}
             <motion.span
               className="absolute -top-4 left-1/4 text-3xl"
@@ -112,7 +111,9 @@ export default function HeroSection() {
           <br />
           {/* GULUDUG with Lightning Effect */}
           <span className="relative inline-block">
-            <span className="lightning-text" data-text="GULUDUG">GULUDUG</span>
+            <span className="lightning-text" data-text="GULUDUG">
+              GULUDUG
+            </span>
             {/* Lightning bolt decorations */}
             <motion.span
               className="absolute -top-4 -left-8 text-4xl"
@@ -171,7 +172,8 @@ export default function HeroSection() {
           variants={itemVariants}
           className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8"
         >
-          Sambel pedas gurih dengan isian nyata yang bikin lauk sederhana jadi luar biasa.
+          Sambel pedas gurih dengan isian nyata yang bikin lauk sederhana jadi
+          luar biasa.
         </motion.p>
 
         {/* Highlights */}
@@ -180,9 +182,9 @@ export default function HeroSection() {
           className="flex flex-wrap justify-center gap-4 mb-10"
         >
           {[
-            { icon: '🔥', text: 'Pedasnya Nampol' },
-            { icon: '🔥', text: 'Gurihnya Nagih' },
-            { icon: '🔥', text: 'Cocok Semua Lauk' },
+            { icon: "🔥", text: "Pedasnya Nampol" },
+            { icon: "🔥", text: "Gurihnya Nagih" },
+            { icon: "🔥", text: "Cocok Semua Lauk" },
           ].map((item, index) => (
             <motion.div
               key={index}
@@ -199,7 +201,7 @@ export default function HeroSection() {
         {/* CTA Button */}
         <motion.div variants={itemVariants}>
           <motion.a
-            href="https://wa.me/6281234567890"
+            href="https://wa.me/6285111031226"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-brutal-orange text-brutal-white font-brutal text-xl md:text-2xl px-10 py-5 border-4 border-brutal-dark shadow-brutal"
@@ -208,7 +210,6 @@ export default function HeroSection() {
             whileTap="tap"
           >
             👉 PESAN SEKARANG
-            <span className="block text-sm font-body mt-1">(Stok Terbatas!)</span>
           </motion.a>
         </motion.div>
 
@@ -233,5 +234,5 @@ export default function HeroSection() {
       <div className="absolute bottom-40 right-10 w-16 h-16 bg-brutal-orange opacity-20 hidden md:block" />
       <div className="absolute top-1/3 right-20 w-8 h-8 bg-brutal-red rotate-45 opacity-40 hidden md:block" />
     </section>
-  )
+  );
 }

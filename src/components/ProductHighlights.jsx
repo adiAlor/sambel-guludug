@@ -1,38 +1,40 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function ProductHighlights() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const highlights = [
     {
-      icon: '🌶️',
-      title: 'Pedas Asli Cabai Pilihan',
-      description: 'Cabai pilihan berkualitas tinggi untuk sensasi pedas yang mantap',
+      icon: "🌶️",
+      title: "Pedas Asli Cabai Pilihan",
+      description:
+        "Cabai pilihan berkualitas tinggi untuk sensasi pedas yang mantap",
     },
     {
-      icon: '🦑',
-      title: 'Isian Nyata, Bukan Sambel Kosong',
-      description: 'Penuh dengan isian protein pilihan yang berlimpah di setiap suapan',
+      icon: "🦑",
+      title: "Isian Nyata, Bukan Sambel Kosong",
+      description:
+        "Penuh dengan isian protein pilihan yang berlimpah di setiap suapan",
     },
     {
-      icon: '🍚',
-      title: 'Cocok Nasi, Indomie, Telur, Ayam',
-      description: 'Partner sempurna untuk semua jenis makanan favoritmu',
+      icon: "🍚",
+      title: "Cocok Nasi, Tempe, Tahu, Telur, Ayam, dll",
+      description: "Partner sempurna untuk semua jenis makanan favoritmu",
     },
     {
-      icon: '🧄',
-      title: 'Dimasak Fresh, Bukan Pabrik',
-      description: 'Dibuat fresh setiap batch dengan resep rahasia keluarga',
+      icon: "🧄",
+      title: "Dimasak Fresh, Bukan Pabrik",
+      description: "Dibuat fresh setiap batch dengan resep rahasia keluarga",
     },
     {
-      icon: '📦',
-      title: 'Kemasan 150ml – Praktis & Mantap',
-      description: 'Ukuran pas untuk stok mingguan si pecinta pedas',
+      icon: "📦",
+      title: "Kemasan 150ml – Praktis & Mantap",
+      description: "Ukuran pas untuk stok mingguan si pecinta pedas",
     },
-  ]
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -42,7 +44,7 @@ export default function ProductHighlights() {
         staggerChildren: 0.15,
       },
     },
-  }
+  };
 
   const cardVariants = {
     hidden: { opacity: 0, x: -50, rotate: -5 },
@@ -52,24 +54,27 @@ export default function ProductHighlights() {
       rotate: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
-  }
+  };
 
   return (
     <section className="relative py-20 bg-brutal-dark overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
             45deg,
             #FF2D2D 0,
             #FF2D2D 1px,
             transparent 1px,
             transparent 20px
           )`,
-        }} />
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
@@ -87,8 +92,7 @@ export default function ProductHighlights() {
             ⚡ Kenapa Harus Sambel Guludug?
           </motion.span>
           <h2 className="font-brutal text-4xl md:text-6xl text-brutal-white mt-4">
-            BUKAN SAMBEL{' '}
-            <span className="text-brutal-orange">BIASA</span>
+            BUKAN SAMBEL <span className="text-brutal-orange">BIASA</span>
           </h2>
         </motion.div>
 
@@ -147,5 +151,5 @@ export default function ProductHighlights() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

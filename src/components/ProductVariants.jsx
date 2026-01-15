@@ -1,46 +1,46 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef, useState } from "react";
 
 export default function ProductVariants() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [hoveredIndex, setHoveredIndex] = useState(null)
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const variants = [
     {
-      name: 'Cumi',
-      icon: '🦑',
-      description: 'Gurih laut, pedasnya nempel di lidah',
-      color: '#FF6B35',
-      bgGradient: 'from-orange-900/50 to-brutal-gray',
+      name: "Cumi",
+      image: "/assets/products/cumi.jpg",
+      description: "Gurih laut, pedasnya nempel di lidah",
+      color: "#FF6B35",
+      bgGradient: "from-orange-900/50 to-brutal-gray",
       spiceLevel: 4,
     },
     {
-      name: 'Cakalang',
-      icon: '🐟',
-      description: 'Aroma asap khas, makin makan makin nambah',
-      color: '#FF8C42',
-      bgGradient: 'from-amber-900/50 to-brutal-gray',
+      name: "Cakalang",
+      image: "/assets/products/cakalang.jpg",
+      description: "Aroma asap khas, makin makan makin nambah",
+      color: "#FF8C42",
+      bgGradient: "from-amber-900/50 to-brutal-gray",
       spiceLevel: 3,
     },
     {
-      name: 'Teri',
-      icon: '🐟',
-      description: 'Renyah gurih, favorit sejuta umat',
-      color: '#FF2D2D',
-      bgGradient: 'from-red-900/50 to-brutal-gray',
+      name: "Teri",
+      image: "/assets/products/teri.jpg",
+      description: "Renyah gurih, favorit sejuta umat",
+      color: "#FF2D2D",
+      bgGradient: "from-red-900/50 to-brutal-gray",
       spiceLevel: 5,
     },
     {
-      name: 'Petai',
-      icon: '🌿',
-      description: 'Pedas dan aroma petai bikin nagih',
-      color: '#22c55e',
-      bgGradient: 'from-green-900/50 to-brutal-gray',
+      name: "Petai",
+      image: "/assets/products/petai.jpg",
+      description: "Pedas dan aroma petai bikin nagih",
+      color: "#22c55e",
+      bgGradient: "from-green-900/50 to-brutal-gray",
       spiceLevel: 4,
     },
-  ]
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -50,7 +50,7 @@ export default function ProductVariants() {
         staggerChildren: 0.2,
       },
     },
-  }
+  };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50, rotateY: -15 },
@@ -60,10 +60,10 @@ export default function ProductVariants() {
       rotateY: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
-  }
+  };
 
   return (
     <section className="relative py-20 bg-brutal-dark overflow-hidden">
@@ -79,12 +79,12 @@ export default function ProductVariants() {
               right: 0,
             }}
             animate={{
-              x: ['-100%', '100%'],
+              x: ["-100%", "100%"],
             }}
             transition={{
               duration: 8 + i * 2,
               repeat: Infinity,
-              ease: 'linear',
+              ease: "linear",
             }}
           />
         ))}
@@ -99,7 +99,7 @@ export default function ProductVariants() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-brutal text-4xl md:text-6xl text-brutal-white mb-4">
-            PILIH{' '}
+            PILIH{" "}
             <span className="text-brutal-orange relative">
               VARIANMU
               <motion.span
@@ -148,16 +148,32 @@ export default function ProductVariants() {
                   }}
                 />
 
-                {/* Icon */}
+                {/* Product Image */}
                 <motion.div
-                  className="text-6xl mb-4 relative z-10"
-                  animate={hoveredIndex === index ? {
-                    scale: [1, 1.2, 1],
-                    rotate: [0, -10, 10, 0],
-                  } : {}}
+                  className="relative z-10 mb-4 flex justify-center"
+                  animate={
+                    hoveredIndex === index
+                      ? {
+                          scale: [1, 1.05, 1],
+                        }
+                      : {}
+                  }
                   transition={{ duration: 0.5 }}
                 >
-                  {variant.icon}
+                  <div className="relative overflow-hidden rounded-lg w-28 h-36">
+                    <img
+                      src={variant.image}
+                      alt={`Sambel Guludug ${variant.name}`}
+                      className="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-110"
+                      style={{
+                        boxShadow:
+                          hoveredIndex === index
+                            ? `0 8px 30px ${variant.color}50`
+                            : `0 4px 15px rgba(0,0,0,0.3)`,
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
+                  </div>
                 </motion.div>
 
                 {/* Name */}
@@ -174,12 +190,16 @@ export default function ProductVariants() {
                 </p>
 
                 {/* Spice Level */}
-                <div className="flex items-center gap-1 relative z-10">
-                  <span className="text-xs text-gray-500 mr-2">Level Pedas:</span>
+                {/* <div className="flex items-center gap-1 relative z-10">
+                  <span className="text-xs text-gray-500 mr-2">
+                    Level Pedas:
+                  </span>
                   {[...Array(5)].map((_, i) => (
                     <motion.span
                       key={i}
-                      className={`text-lg ${i < variant.spiceLevel ? '' : 'opacity-30'}`}
+                      className={`text-lg ${
+                        i < variant.spiceLevel ? "" : "opacity-30"
+                      }`}
                       initial={{ scale: 0 }}
                       animate={isInView ? { scale: 1 } : {}}
                       transition={{ delay: 0.8 + i * 0.1 }}
@@ -187,7 +207,7 @@ export default function ProductVariants() {
                       🌶️
                     </motion.span>
                   ))}
-                </div>
+                </div> */}
 
                 {/* Hover Indicator */}
                 <motion.div
@@ -220,7 +240,19 @@ export default function ProductVariants() {
             </div>
           </div>
         </motion.div>
+
+        {/* Bottom Decoration */}
+        <motion.div
+          className="mt-16 flex justify-center items-center gap-4"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        >
+          <div className="h-1 w-20 bg-brutal-red" />
+          <span className="text-brutal-orange text-3xl fire-emoji">🔥</span>
+          <div className="h-1 w-20 bg-brutal-red" />
+        </motion.div>
       </div>
     </section>
-  )
+  );
 }

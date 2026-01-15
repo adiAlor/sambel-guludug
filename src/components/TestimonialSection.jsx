@@ -1,55 +1,55 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef, useState } from "react";
 
 export default function TestimonialSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [activeIndex, setActiveIndex] = useState(0)
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const testimonials = [
     {
-      name: 'Rina',
-      location: 'Bandung',
+      name: "Rina",
+      location: "Bandung",
       rating: 5,
-      text: 'Pedasnya pas, lauk seadanya jadi berasa mahal. Udah repeat order 5x!',
-      avatar: '👩',
+      text: "Pedasnya pas, lauk seadanya jadi berasa mahal. Udah repeat order 5x!",
+      avatar: "👩",
     },
     {
-      name: 'Dimas',
-      location: 'Jakarta',
+      name: "Dimas",
+      location: "Jakarta",
       rating: 5,
-      text: 'Anak kos wajib coba, bahaya kalau stok habis. Indomie + sambel ini = surga!',
-      avatar: '👨',
+      text: "Anak kos wajib coba, bahaya kalau stok habis. Nasi panas + sambel ini = surga!",
+      avatar: "👨",
     },
     {
-      name: 'Sari',
-      location: 'Surabaya',
+      name: "Sari",
+      location: "Surabaya",
       rating: 5,
-      text: 'Varian cumi the best! Isian beneran banyak, bukan cuma bumbu doang.',
-      avatar: '👩‍🦰',
+      text: "Varian cumi the best! Isian beneran banyak, bukan cuma bumbu doang.",
+      avatar: "👩‍🦰",
     },
     {
-      name: 'Budi',
-      location: 'Yogyakarta',
+      name: "Budi",
+      location: "Yogyakarta",
       rating: 5,
-      text: 'Dikira lebay, ternyata emang seenak itu. Langsung order 6 botol sekalian!',
-      avatar: '🧔',
+      text: "Dikira lebay, ternyata emang seenak itu. Langsung order 6 botol sekalian!",
+      avatar: "🧔",
     },
     {
-      name: 'Anisa',
-      location: 'Semarang',
+      name: "Anisa",
+      location: "Semarang",
       rating: 5,
-      text: 'Petainya mantap! Aroma kuat tapi pedasnya balance. Auto langganan.',
-      avatar: '👧',
+      text: "Petainya mantap! Aroma kuat tapi pedasnya balance. Auto langganan.",
+      avatar: "👧",
     },
-  ]
+  ];
 
   const stats = [
-    { value: '10,000+', label: 'Botol Terjual' },
-    { value: '95%', label: 'Repeat Order' },
-    { value: '4.9', label: 'Rating', suffix: '⭐' },
-  ]
+    { value: "200+", label: "Botol Terjual" },
+    { value: "95%", label: "Repeat Order" },
+    { value: "5.0", label: "Rating", suffix: "⭐" },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -59,7 +59,7 @@ export default function TestimonialSection() {
         staggerChildren: 0.15,
       },
     },
-  }
+  };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30, rotate: -3 },
@@ -69,13 +69,16 @@ export default function TestimonialSection() {
       rotate: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
-  }
+  };
 
   return (
-    <section className="relative py-20 bg-brutal-dark overflow-hidden" ref={ref}>
+    <section
+      className="relative py-20 bg-brutal-dark overflow-hidden"
+      ref={ref}
+    >
       {/* Background Decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-40 h-40 border-4 border-brutal-red/10 rotate-12" />
@@ -98,9 +101,8 @@ export default function TestimonialSection() {
             ⭐ Kata Mereka
           </motion.span>
           <h2 className="font-brutal text-4xl md:text-6xl text-brutal-white mt-4">
-            PECINTA{' '}
-            <span className="text-brutal-orange">PEDAS</span>
-            {' '}SUDAH BUKTIKAN
+            PECINTA <span className="text-brutal-orange">PEDAS</span> SUDAH
+            BUKTIKAN
           </h2>
         </motion.div>
 
@@ -175,9 +177,13 @@ export default function TestimonialSection() {
                 <div className="flex items-center gap-3 pt-4 border-t-2 border-brutal-orange/30">
                   <motion.span
                     className="text-4xl"
-                    animate={activeIndex === index ? {
-                      scale: [1, 1.2, 1],
-                    } : {}}
+                    animate={
+                      activeIndex === index
+                        ? {
+                            scale: [1, 1.2, 1],
+                          }
+                        : {}
+                    }
                     transition={{ duration: 0.5 }}
                   >
                     {testimonial.avatar}
@@ -209,5 +215,5 @@ export default function TestimonialSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
