@@ -46,7 +46,7 @@ export default function Navbar() {
                 alt="Sambel Guludug Logo"
                 className="w-16 h-16 object-contain"
               />
-              SAMBEL GULUDUG
+              <span className="hidden md:inline">SAMBEL GULUDUG</span>
             </motion.a>
 
             {/* Desktop Navigation */}
