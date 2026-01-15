@@ -150,17 +150,17 @@ export default function ProductVariants() {
 
                 {/* Product Image */}
                 <motion.div
-                  className="relative z-10 mb-4 flex justify-center"
+                  className="relative z-10 mb-4"
                   animate={
                     hoveredIndex === index
                       ? {
-                          scale: [1, 1.05, 1],
+                          scale: [1, 1.03, 1],
                         }
                       : {}
                   }
                   transition={{ duration: 0.5 }}
                 >
-                  <div className="relative overflow-hidden rounded-lg w-28 h-36">
+                  <div className="relative overflow-hidden rounded-lg w-full h-56">
                     <img
                       src={variant.image}
                       alt={`Sambel Guludug ${variant.name}`}

@@ -32,7 +32,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-6 py-2">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <motion.a
@@ -44,7 +44,7 @@ export default function Navbar() {
               <img
                 src="/logo.png"
                 alt="Sambel Guludug Logo"
-                className="w-24 h-24 object-contain"
+                className="w-16 h-16 object-contain"
               />
               SAMBEL GULUDUG
             </motion.a>
