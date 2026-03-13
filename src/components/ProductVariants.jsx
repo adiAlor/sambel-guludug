@@ -7,7 +7,7 @@ export default function ProductVariants() {
       tagline: "Kenikmatan Laut Yang Pedas",
       description: "Cumi asin segar dengan perpaduan sambal ijo rahasia yang gurih dan nagih.",
       price: "25k",
-      image: "🦑",
+      image: "/assets/products/cumi.jpg",
       badge: "Best Seller",
       color: "from-green-600 to-emerald-600"
     },
@@ -16,7 +16,7 @@ export default function ProductVariants() {
       tagline: "Suwiran Ikan Premium",
       description: "Ikan cakalang asap pilihan dengan bumbu pedas meresap hingga ke serat daging.",
       price: "25k",
-      image: "🐟",
+      image: "/assets/products/cakalang.jpg",
       badge: "Hot Item",
       color: "from-red-600 to-orange-600"
     },
@@ -25,7 +25,7 @@ export default function ProductVariants() {
       tagline: "Aroma Mantap Tiada Dua",
       description: "Petai segar pilihan berpadu dengan sambal bawang premium yang aromanya menggoda.",
       price: "25k",
-      image: "🌿",
+      image: "/assets/products/petai.jpg",
       badge: "Favorit",
       color: "from-emerald-600 to-green-600"
     },
@@ -34,7 +34,7 @@ export default function ProductVariants() {
       tagline: "Kriuk Gurih Menggugah Selera",
       description: "Teri medan crispy dengan bumbu pedas yang pas, teman setia nasi hangat Anda.",
       price: "25k",
-      image: "🐟",
+      image: "/assets/products/teri.jpg",
       badge: "Populer",
       color: "from-amber-600 to-orange-600"
     }
@@ -105,9 +105,11 @@ export default function ProductVariants() {
               {/* Product Icon/Image Box */}
               <div className="relative mb-8 aspect-square flex items-center justify-center text-7xl bg-white/5 rounded-[2rem] group-hover:scale-105 transition-transform duration-700 overflow-hidden">
                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-700`} />
-                 <span className="group-hover:scale-110 transition-transform duration-700">
-                    {item.image}
-                 </span>
+                 <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                 />
               </div>
 
               <div className="mb-6 flex-grow">

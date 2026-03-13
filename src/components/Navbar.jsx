@@ -31,7 +31,8 @@ export default function Navbar() {
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 group">
-          <span className="text-2xl font-black tracking-tighter text-text-dark group-hover:text-primary transition-colors">
+          <img src="/logo.png" alt="Sambel Guludug Logo" className="h-12 w-auto object-contain" />
+          <span className="text-2xl font-black tracking-tighter text-text-dark group-hover:text-primary transition-colors hidden sm:block">
             SAMBEL<span className="text-primary group-hover:text-text-dark transition-colors">GULUDUG</span>
           </span>
         </a>
