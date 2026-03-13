@@ -2,14 +2,15 @@ import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import ProductHighlights from './components/ProductHighlights'
 import ProductVariants from './components/ProductVariants'
-// import ScarcitySection from './components/ScarcitySection'
 import TestimonialSection from './components/TestimonialSection'
 import CTASection from './components/CTASection'
 import Footer from './components/Footer'
+import BubbleBackground from './components/BubbleBackground'
 
 function App() {
   return (
-    <div className="noise-overlay">
+    <div className="relative min-h-screen noise">
+      <BubbleBackground />
       <Navbar />
       <main>
         <HeroSection />

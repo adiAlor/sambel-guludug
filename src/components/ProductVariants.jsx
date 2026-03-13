@@ -1,257 +1,137 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
 
 export default function ProductVariants() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
   const variants = [
     {
-      name: "Cumi",
-      image: "/assets/products/cumi.jpg",
-      description: "Gurih laut, pedasnya nempel di lidah",
-      color: "#FF6B35",
-      bgGradient: "from-orange-900/50 to-brutal-gray",
-      spiceLevel: 4,
+      name: "Cumi Guludug",
+      tagline: "Kenikmatan Laut Yang Pedas",
+      description: "Cumi asin segar dengan perpaduan sambal ijo rahasia yang gurih dan nagih.",
+      price: "25k",
+      image: "🦑",
+      badge: "Best Seller",
+      color: "from-green-600 to-emerald-600"
     },
     {
-      name: "Cakalang",
-      image: "/assets/products/cakalang.jpg",
-      description: "Aroma asap khas, makin makan makin nambah",
-      color: "#FF8C42",
-      bgGradient: "from-amber-900/50 to-brutal-gray",
-      spiceLevel: 3,
+      name: "Cakalang Guludug",
+      tagline: "Suwiran Ikan Premium",
+      description: "Ikan cakalang asap pilihan dengan bumbu pedas meresap hingga ke serat daging.",
+      price: "25k",
+      image: "🐟",
+      badge: "Hot Item",
+      color: "from-red-600 to-orange-600"
     },
     {
-      name: "Teri",
-      image: "/assets/products/teri.jpg",
-      description: "Renyah gurih, favorit sejuta umat",
-      color: "#FF2D2D",
-      bgGradient: "from-red-900/50 to-brutal-gray",
-      spiceLevel: 5,
+      name: "Petai Guludug",
+      tagline: "Aroma Mantap Tiada Dua",
+      description: "Petai segar pilihan berpadu dengan sambal bawang premium yang aromanya menggoda.",
+      price: "25k",
+      image: "🌿",
+      badge: "Favorit",
+      color: "from-emerald-600 to-green-600"
     },
     {
-      name: "Petai",
-      image: "/assets/products/petai.jpg",
-      description: "Pedas dan aroma petai bikin nagih",
-      color: "#22c55e",
-      bgGradient: "from-green-900/50 to-brutal-gray",
-      spiceLevel: 4,
-    },
+      name: "Teri Guludug",
+      tagline: "Kriuk Gurih Menggugah Selera",
+      description: "Teri medan crispy dengan bumbu pedas yang pas, teman setia nasi hangat Anda.",
+      price: "25k",
+      image: "🐟",
+      badge: "Populer",
+      color: "from-amber-600 to-orange-600"
+    }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, rotateY: -15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      rotateY: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
-    <section className="relative py-20 bg-brutal-dark overflow-hidden">
-      {/* Animated Background Lines */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(5)].map((_, i) => (
+    <section id="varian" className="section-padding bg-[#0a0502] text-white relative overflow-hidden xl:rounded-[4rem] mx-0 xl:mx-8 my-20 min-h-screen flex items-center">
+      {/* Cinematic Background Elements */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/20 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/10 blur-[150px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')] opacity-10 pointer-events-none" />
+
+      <div className="container-custom relative z-10 w-full">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mb-28 text-center lg:text-left">
+          <div className="max-w-3xl mx-auto lg:mx-0">
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               className="inline-block bg-primary/20 text-primary border border-primary/30 px-4 py-1.5 rounded-full text-sm font-black uppercase tracking-[0.2em] mb-6"
+            >
+              Koleksi Utama
+            </motion.div>
+            <motion.h2 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-5xl md:text-8xl font-black mb-8 leading-tight"
+            >
+              Varian <span className="text-gradient">Legendaris</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-xl text-white/50 font-medium max-w-xl mx-auto lg:mx-0"
+            >
+              Empat rasa pilihan yang telah memikat hati para pecinta pedas sejati.
+            </motion.p>
+          </div>
           <motion.div
-            key={i}
-            className="absolute h-px bg-brutal-red/20"
-            style={{
-              top: `${20 + i * 15}%`,
-              left: 0,
-              right: 0,
-            }}
-            animate={{
-              x: ["-100%", "100%"],
-            }}
-            transition={{
-              duration: 8 + i * 2,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+          >
+            <a href="https://wa.me/6285111031226" className="btn-primary group">
+               <span>Pesan Koleksi Lengkap</span>
+               <span className="group-hover:translate-x-2 transition-transform">🚀</span>
+            </a>
+          </motion.div>
+        </div>
 
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="font-brutal text-4xl md:text-6xl text-brutal-white mb-4">
-            PILIH{" "}
-            <span className="text-brutal-orange relative">
-              VARIANMU
-              <motion.span
-                className="absolute -bottom-2 left-0 right-0 h-2 bg-brutal-red"
-                initial={{ scaleX: 0 }}
-                animate={isInView ? { scaleX: 1 } : {}}
-                transition={{ delay: 0.5, duration: 0.6 }}
-              />
-            </span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-xl mx-auto">
-            Semua varian sama enaknya, tinggal pilih mau coba yang mana dulu! 🌶️
-          </p>
-        </motion.div>
-
-        {/* Variants Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {variants.map((variant, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+          {variants.map((item, index) => (
             <motion.div
               key={index}
-              variants={cardVariants}
-              className="group perspective-1000"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              initial={{ opacity: 0, scale: 0.9, y: 50 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15, duration: 0.8 }}
+              className="glass-dark rounded-[2.5rem] p-8 hover:border-primary/50 transition-all duration-700 group relative flex flex-col h-full"
             >
-              <motion.div
-                className={`relative bg-gradient-to-b ${variant.bgGradient} border-4 p-6 h-full transition-colors duration-300`}
-                style={{ borderColor: variant.color }}
-                whileHover={{
-                  scale: 1.05,
-                  rotateY: 5,
-                  rotateX: -5,
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Glow Effect */}
-                <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: `radial-gradient(circle at center, ${variant.color}20 0%, transparent 70%)`,
-                  }}
-                />
+              {/* Product Badge */}
+              <div className="absolute top-6 right-6 bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest z-20">
+                {item.badge}
+              </div>
 
-                {/* Product Image */}
-                <motion.div
-                  className="relative z-10 mb-4"
-                  animate={
-                    hoveredIndex === index
-                      ? {
-                          scale: [1, 1.03, 1],
-                        }
-                      : {}
-                  }
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="relative overflow-hidden rounded-lg w-full h-56">
-                    <img
-                      src={variant.image}
-                      alt={`Sambel Guludug ${variant.name}`}
-                      className="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-110"
-                      style={{
-                        boxShadow:
-                          hoveredIndex === index
-                            ? `0 8px 30px ${variant.color}50`
-                            : `0 4px 15px rgba(0,0,0,0.3)`,
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
-                  </div>
-                </motion.div>
+              {/* Product Icon/Image Box */}
+              <div className="relative mb-8 aspect-square flex items-center justify-center text-7xl bg-white/5 rounded-[2rem] group-hover:scale-105 transition-transform duration-700 overflow-hidden">
+                 <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-700`} />
+                 <span className="group-hover:scale-110 transition-transform duration-700">
+                    {item.image}
+                 </span>
+              </div>
 
-                {/* Name */}
-                <h3
-                  className="font-brutal text-2xl mb-2 relative z-10"
-                  style={{ color: variant.color }}
-                >
-                  {variant.name}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-300 text-sm mb-4 relative z-10">
-                  {variant.description}
+              <div className="mb-6 flex-grow">
+                <p className="text-primary font-bold text-xs uppercase tracking-widest mb-2">{item.tagline}</p>
+                <h3 className="text-2xl font-black mb-3 group-hover:text-primary transition-colors">{item.name}</h3>
+                <p className="text-white/40 text-sm font-medium leading-relaxed italic line-clamp-3">
+                  "{item.description}"
                 </p>
+              </div>
 
-                {/* Spice Level */}
-                {/* <div className="flex items-center gap-1 relative z-10">
-                  <span className="text-xs text-gray-500 mr-2">
-                    Level Pedas:
+              <div className="flex items-center justify-between pt-6 border-t border-white/10 group-hover:border-primary/30 transition-colors">
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-white/30 font-bold uppercase tracking-wider">Mulai Dari</span>
+                  <span className="text-3xl font-black text-white">
+                     <span className="text-primary">Rp</span>{item.price}
                   </span>
-                  {[...Array(5)].map((_, i) => (
-                    <motion.span
-                      key={i}
-                      className={`text-lg ${
-                        i < variant.spiceLevel ? "" : "opacity-30"
-                      }`}
-                      initial={{ scale: 0 }}
-                      animate={isInView ? { scale: 1 } : {}}
-                      transition={{ delay: 0.8 + i * 0.1 }}
-                    >
-                      🌶️
-                    </motion.span>
-                  ))}
-                </div> */}
-
-                {/* Hover Indicator */}
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-1"
-                  style={{ backgroundColor: variant.color }}
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
+                </div>
+                <button className="w-12 h-12 bg-white text-text-dark rounded-[1.25rem] flex items-center justify-center font-black text-xl hover:bg-primary hover:text-white transition-all active:scale-90">
+                  +
+                </button>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Price Section */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <div className="inline-block relative">
-            <div className="absolute inset-0 bg-brutal-red translate-x-2 translate-y-2" />
-            <div className="relative bg-brutal-gray border-4 border-brutal-red px-10 py-6">
-              <span className="text-gray-400 text-lg">Harga per botol</span>
-              <div className="font-brutal text-5xl md:text-6xl text-brutal-orange mt-2">
-                Rp25.000
-              </div>
-              <span className="text-gray-400 text-sm">(150ml)</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Bottom Decoration */}
-        <motion.div
-          className="mt-16 flex justify-center items-center gap-4"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <div className="h-1 w-20 bg-brutal-red" />
-          <span className="text-brutal-orange text-3xl fire-emoji">🔥</span>
-          <div className="h-1 w-20 bg-brutal-red" />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

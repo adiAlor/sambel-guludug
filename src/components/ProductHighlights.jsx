@@ -1,154 +1,98 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 
 export default function ProductHighlights() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const highlights = [
     {
+      title: "Resep Warisan",
+      description: "Diracik dengan bumbu rahasia dari rempah nusantara yang autentik.",
+      icon: "🥘",
+      gradient: "from-orange-500/20 to-red-500/10",
+      accent: "#ff4d00"
+    },
+    {
+      title: "Bahan Pilihan",
+      description: "Cabai segar dan cumi premium yang diproses higienis setiap hari.",
       icon: "🌶️",
-      title: "Pedas Asli Cabai Pilihan",
-      description:
-        "Cabai pilihan berkualitas tinggi untuk sensasi pedas yang mantap",
+      gradient: "from-red-500/20 to-accent-500/10",
+      accent: "#ff003c"
     },
     {
-      icon: "🦑",
-      title: "Isian Nyata, Bukan Sambel Kosong",
-      description:
-        "Penuh dengan isian protein pilihan yang berlimpah di setiap suapan",
-    },
-    {
-      icon: "🍚",
-      title: "Cocok Nasi, Tempe, Tahu, Telur, Ayam, dll",
-      description: "Partner sempurna untuk semua jenis makanan favoritmu",
-    },
-    {
-      icon: "🧄",
-      title: "Dimasak Fresh, Bukan Pabrik",
-      description: "Dibuat fresh setiap batch dengan resep rahasia keluarga",
-    },
-    {
-      icon: "📦",
-      title: "Kemasan 150ml – Praktis & Mantap",
-      description: "Ukuran pas untuk stok mingguan si pecinta pedas",
-    },
+      title: "Tanpa Pengawet",
+      description: "Nutrisi dan rasa tetap terjaga tanpa tambahan bahan kimia.",
+      icon: "🌿",
+      gradient: "from-green-500/20 to-emerald-500/10",
+      accent: "#10b981"
+    }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, x: -50, rotate: -5 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      rotate: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
-    <section className="relative py-20 bg-brutal-dark overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-            45deg,
-            #FF2D2D 0,
-            #FF2D2D 1px,
-            transparent 1px,
-            transparent 20px
-          )`,
-          }}
-        />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.span
-            className="inline-block bg-brutal-red text-brutal-white font-bold px-4 py-1 text-sm uppercase tracking-widest mb-4 border-4 border-brutal-dark"
-            whileHover={{ rotate: [-1, 1, -1, 0], scale: 1.05 }}
+    <section id="highlights" className="section-padding relative">
+      <div className="container-custom relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 mb-24">
+          <div className="max-w-xl text-center md:text-left">
+            <motion.h2 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-black mb-8 text-text-dark leading-tight"
+            >
+              Kualitas <span className="text-primary tracking-tighter">Tanpa Kompromi</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-lg md:text-xl text-text-dark/60 font-medium leading-relaxed"
+            >
+              Kami tidak hanya menjual sambel, kami menjual pengalaman makan yang tak terlupakan.
+            </motion.p>
+          </div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="hidden lg:block w-48 h-48 border-[16px] border-primary/5 rounded-full animate-spin-slow"
           >
-            ⚡ Kenapa Harus Sambel Guludug?
-          </motion.span>
-          <h2 className="font-brutal text-4xl md:text-6xl text-brutal-white mt-4">
-            BUKAN SAMBEL <span className="text-brutal-orange">BIASA</span>
-          </h2>
-        </motion.div>
+             <div className="w-full h-full border-[16px] border-primary/10 border-t-primary rounded-full" />
+          </motion.div>
+        </div>
 
-        {/* Highlights Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {highlights.map((item, index) => (
             <motion.div
               key={index}
-              variants={cardVariants}
-              className="group relative"
-              whileHover={{ y: -8, x: -8 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15, duration: 0.8 }}
+              className="modern-card group overflow-hidden"
             >
-              <div className="absolute inset-0 bg-brutal-red translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform duration-300" />
-              <div className="relative bg-brutal-gray border-4 border-brutal-red p-6 h-full">
-                {/* Icon */}
-                <motion.div
-                  className="text-5xl mb-4"
-                  whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.4 }}
-                >
+              {/* Decorative Background Blob */}
+              <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.gradient} rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700`} />
+              
+              <div className="relative z-10">
+                <div className="w-20 h-20 bg-white shadow-xl shadow-black/5 rounded-3xl flex items-center justify-center text-4xl mb-10 group-hover:-rotate-12 transition-transform duration-500 border border-primary/5">
                   {item.icon}
-                </motion.div>
-
-                {/* Title */}
-                <h3 className="font-brutal text-xl text-brutal-orange mb-2">
+                </div>
+                <h3 className="text-2xl md:text-3xl font-black mb-6 text-text-dark group-hover:text-primary transition-colors">
                   {item.title}
                 </h3>
-
-                {/* Description */}
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-text-dark/60 font-medium leading-relaxed mb-8">
                   {item.description}
                 </p>
-
-                {/* Decorative Corner */}
-                <div className="absolute top-0 right-0 w-8 h-8 bg-brutal-orange transform translate-x-1/2 -translate-y-1/2 rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="h-1 w-12 bg-primary/20 group-hover:w-full transition-all duration-500 rounded-full" />
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Bottom Decoration */}
-        <motion.div
-          className="mt-16 flex justify-center items-center gap-4"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <div className="h-1 w-20 bg-brutal-red" />
-          <span className="text-brutal-orange text-3xl fire-emoji">🔥</span>
-          <div className="h-1 w-20 bg-brutal-red" />
-        </motion.div>
+        </div>
+      </div>
+      
+      {/* Decorative Text in background */}
+      <div className="absolute top-1/2 left-0 w-full overflow-hidden pointer-events-none opacity-[0.03] select-none">
+        <div className="text-[20vw] font-black whitespace-nowrap tracking-tighter leading-none">
+          QUALIFIED PREMIUM AUTHENTIC SPICY
+        </div>
       </div>
     </section>
   );
