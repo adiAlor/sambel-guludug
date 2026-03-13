@@ -2,17 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const BubbleBackground = () => {
-    // Generate different types of background elements for a "Rich" look
-    const bubbles = Array.from({ length: 20 }).map((_, i) => ({
+    // Generate background elements
+    const elements = Array.from({ length: 25 }).map((_, i) => ({
         id: i,
-        size: Math.random() * 400 + 100,
+        size: Math.random() * 40 + 20, // Smaller for chilis
         x: Math.random() * 100,
         y: Math.random() * 100,
-        duration: Math.random() * 25 + 15,
-        delay: Math.random() * -20, // Start mid-animation
-        opacity: Math.random() * 0.08 + 0.02,
-        color: i % 4 === 0 ? '#ff4d00' : i % 4 === 1 ? '#ff9d00' : i % 4 === 2 ? '#ff003c' : '#ffffff',
-        blur: Math.random() * 80 + 40
+        duration: Math.random() * 20 + 15,
+        delay: Math.random() * -20,
+        opacity: Math.random() * 0.15 + 0.05,
+        rotation: Math.random() * 360,
+        type: i % 5 === 0 ? 'glow' : 'chili' // Mix of glows and chilis
     }));
 
     return (
@@ -20,33 +20,38 @@ const BubbleBackground = () => {
             {/* Base Layer Gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#fffcf9] via-[#fff5f0] to-[#fffcf9] opacity-100" />
             
-            {/* Animated Glows */}
-            {bubbles.map((bubble) => (
+            {/* Animated Elements */}
+            {elements.map((el) => (
                 <motion.div
-                    key={bubble.id}
-                    className="absolute rounded-full"
+                    key={el.id}
+                    className="absolute flex items-center justify-center"
                     style={{
-                        width: bubble.size,
-                        height: bubble.size,
-                        backgroundColor: bubble.color,
-                        left: `${bubble.x}%`,
-                        top: `${bubble.y}%`,
-                        filter: `blur(${bubble.blur}px)`,
-                        opacity: bubble.opacity,
+                        width: el.type === 'glow' ? el.size * 10 : el.size,
+                        height: el.type === 'glow' ? el.size * 10 : el.size,
+                        left: `${el.x}%`,
+                        top: `${el.y}%`,
+                        opacity: el.opacity,
+                        filter: el.type === 'glow' ? 'blur(80px)' : 'none',
+                        backgroundColor: el.type === 'glow' ? (el.id % 2 === 0 ? '#ff4d00' : '#ff9d00') : 'transparent',
+                        borderRadius: '50%',
                     }}
                     animate={{
-                        x: [0, Math.random() * 150 - 75, 0],
-                        y: [0, Math.random() * 150 - 75, 0],
-                        scale: [1, 1.3, 1],
-                        opacity: [bubble.opacity, bubble.opacity * 1.5, bubble.opacity]
+                        y: [0, -100, 0, 100, 0],
+                        x: [0, 50, -50, 20, 0],
+                        rotate: el.type === 'chili' ? [el.rotation, el.rotation + 360] : 0,
+                        scale: [1, 1.1, 0.9, 1],
                     }}
                     transition={{
-                        duration: bubble.duration,
+                        duration: el.duration,
                         repeat: Infinity,
-                        delay: bubble.delay,
-                        ease: "easeInOut"
+                        delay: el.delay,
+                        ease: "linear"
                     }}
-                />
+                >
+                    {el.type === 'chili' && (
+                        <span style={{ fontSize: `${el.size}px` }}>🌶️</span>
+                    )}
+                </motion.div>
             ))}
 
             {/* Subtle Grid Pattern Overlay */}
